@@ -1,36 +1,36 @@
 import React from "react";
-import Expenseform from " ./ExpenseForm";
-import Expenselist from "./ExpenseList";
-import Chartsection from "./Chartsection";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
-function Home() {
+export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6">
-      {/* Title Section */}
-      <h1 className="text-3xl font-bold text-blue-600 mb-6">
-        💰 Expense Tracker Dashboard
+    <motion.div
+      className="text-center py-16"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+    >
+      <h1 className="text-3xl font-bold text-indigo-700 mb-3">
+        Welcome to Smart Family Expense Tracker 💰
       </h1>
+      <p className="text-gray-600 mb-6">
+        Manage your spending, visualize your expenses, and plan smarter.
+      </p>
 
-      {/* Layout for Chart, Form, and List */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-6xl">
-        
-        {/* Chart Section */}
-        <div className="col-span-1">
-          <Chartsection />
-        </div>
-
-        {/* Expense Form */}
-        <div className="col-span-1">
-          <Expenseform />
-        </div>
+      <div className="flex justify-center gap-4">
+        <Link
+          to="/add-expense"
+          className="bg-indigo-500 text-white px-5 py-2 rounded-lg shadow hover:bg-indigo-600 transition"
+        >
+          ➕ Add Expense
+        </Link>
+        <Link
+          to="/charts"
+          className="bg-blue-500 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-600 transition"
+        >
+          📊 View Charts
+        </Link>
       </div>
-
-      {/* Expense List */}
-      <div className="w-full max-w-4xl mt-8">
-        <Expenselist />
-      </div>
-    </div>
+    </motion.div>
   );
 }
-
-export default Home;
