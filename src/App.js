@@ -1,24 +1,37 @@
-
+import React, { useState } from "react";
+import Header from "./Components/Header";
+import ExpenseForm from "./Components/Expenseform";
+import ExpenseList from "./Components/ExpenseList";
+import ChartSection from "./Components/Chartsection";
 
 function App() {
+  // All expenses stored here
+  const [expenses, setExpenses] = useState([]);
+
+  // Function to add a new expense
+  const handleAddExpense = (expense) => {
+    setExpenses([...expenses, expense]);
+  };
+
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold text-blue-600 mb-6">
-        Tailwind CSS is working!
-      </h1>
-      <div className="flex space-x-4">
-        <div className="w-24 h-24 bg-red-500 rounded-lg shadow-md flex items-center justify-center text-white">
-          Box 1
-        </div>
-        <div className="w-24 h-24 bg-green-500 rounded-lg shadow-md flex items-center justify-center text-white">
-          Box 2
-        </div>
-        <div className="w-24 h-24 bg-yellow-500 rounded-lg shadow-md flex items-center justify-center text-white">
-          Box 3
-        </div>
+    <div className="min-h-screen bg-gray-100">
+      {/* Header Section */}
+      <Header />
+
+      {/* Main Container */}
+      <div className="max-w-4xl mx-auto p-6">
+        {/* Expense Form */}
+        <ExpenseForm onAddExpense={handleAddExpense} />
+
+        {/* Expense List */}
+        <ExpenseList expenses={expenses} />
+
+        {/* Chart Section */}
+        <ChartSection expenses={expenses} />
       </div>
     </div>
   );
 }
 
 export default App;
+
